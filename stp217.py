@@ -324,6 +324,42 @@ def max_mul_seq():
     print(max(cnt_arr))
 
 
+def max_non_increasing_seq():
+
+    def search_max_num_of_subseq(arr, n):
+        for i in range(n):
+            start = 0
+            end = n
+            while end - start > 1:
+                if max_num_of_subseq[(end + start) // 2][0] >= arr[i]:
+                    start = (end + start) // 2
+                else:
+                    end = (end + start) // 2
+            max_num_of_subseq[end] = [arr[i], i]
+            arr[i] = [arr[i], max_num_of_subseq[end - 1][1]]
+        return max_num_of_subseq
+
+    def print_answ(arr, n):
+        answ = []
+        idx = -1
+        for i in range(n, -1, -1):
+            if arr[i][0] > -1:
+                idx = arr[i][1]
+                break
+        print(i)
+        while idx != '':
+            answ.append(idx + 1)
+            idx = arr_in[idx][1]
+        print(*reversed(answ))
+        return
+
+    n = int(input())
+    arr_in = list(map(int, input().split()))
+    max_num_of_subseq = [[-1, ''] if x > 0 else [10 ** 6, ''] for x in range(n + 1)]
+
+    print_answ(search_max_num_of_subseq(arr_in, n), n)
+
+
 if __name__ == "__main__":
     # fib()  #Даны целые числа 1≤n≤10^18 и 2≤m≤10^5, необходимо найти остаток от деления n-го числа Фибоначчи на m.
 
@@ -422,22 +458,23 @@ if __name__ == "__main__":
     # Sample Output:
     # 1 0 0
 
-    #num_sort() #Задача на программирование: сортировка подсчётом/ Первая строка содержит число 1≤n≤10^4, вторая — n
-                # натуральных чисел, не превышающих 10. Выведите упорядоченную по неубыванию последовательность этих
-                # чисел.
-                #Sample Input:
-                #5
-                #2 3 9 2 9
-                #Sample Output:
-                #2 2 3 9 9
+    # num_sort() #Задача на программирование: сортировка подсчётом/ Первая строка содержит число 1≤n≤10^4, вторая — n
+    # натуральных чисел, не превышающих 10. Выведите упорядоченную по неубыванию последовательность этих
+    # чисел.
+    # Sample Input:
+    # 5
+    # 2 3 9 2 9
+    # Sample Output:
+    # 2 2 3 9 9
 
-    #max_mul_seq() #наибольшая последовательнократная подпоследовательность Дано целое число 1≤n≤10^3 и массив A[1…n]
-                    # натуральных чисел, не превосходящих 2⋅10^9. Выведите максимальное 1≤k≤n, для которого найдётся
-                    # подпоследовательность 1≤i1<i2<…<ik≤n длины k, в которой каждый элемент делится на предыдущий
-                    # (формально: для  всех 1≤j<k, A[ij] ∣ A[ij+1]]).
-                    #Sample Input:
-                    #4
-                    #3 6 7 12
-                    #Sample Output:
-                    #3
+    # max_mul_seq() #наибольшая последовательнократная подпоследовательность Дано целое число 1≤n≤10^3 и массив A[1…n]
+    # натуральных чисел, не превосходящих 2⋅10^9. Выведите максимальное 1≤k≤n, для которого найдётся
+    # подпоследовательность 1≤i1<i2<…<ik≤n длины k, в которой каждый элемент делится на предыдущий
+    # (формально: для  всех 1≤j<k, A[ij] ∣ A[ij+1]]).
+    # Sample Input:
+    # 4
+    # 3 6 7 12
+    # Sample Output:
+    # 3
 
+    max_non_increasing_seq()
