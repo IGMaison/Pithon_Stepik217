@@ -325,7 +325,6 @@ def max_mul_seq():
 
 
 def max_non_increasing_seq():
-
     def search_max_num_of_subseq(arr, n):
         for i in range(n):
             start = 0
@@ -345,8 +344,9 @@ def max_non_increasing_seq():
         for i in range(n, -1, -1):
             if arr[i][0] > -1:
                 idx = arr[i][1]
+                print(i)
                 break
-        print(i)
+
         while idx != '':
             answ.append(idx + 1)
             idx = arr_in[idx][1]
@@ -361,6 +361,7 @@ def max_non_increasing_seq():
 
 
 if __name__ == "__main__":
+
     # fib()  #Даны целые числа 1≤n≤10^18 и 2≤m≤10^5, необходимо найти остаток от деления n-го числа Фибоначчи на m.
 
     #    nod()  # По данным двум числам 1≤a,b≤2⋅10^9 найдите их наибольший общий делитель.
@@ -477,4 +478,13 @@ if __name__ == "__main__":
     # Sample Output:
     # 3
 
-    max_non_increasing_seq()
+    # max_non_increasing_seq() # наибольшая невозрастающая подпоследовательность. Дано целое число 1≤n≤10^5 и массив
+    # A[1…n], содержащий неотрицательные целые числа, не превосходящие 10^9. Найдите
+    # наибольшую невозрастающую подпоследовательность в A. В первой строке выведите её длину
+    # k, во второй — её индексы 1≤i1<i2<…<ik≤n (таким образом, A[i1]≥A[i2]≥…≥A[in].
+    # Sample Input:
+    # 5
+    # 5 3 4 4 2
+    # Sample Output:
+    # 4
+    # 1 3 4 5
