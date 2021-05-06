@@ -360,11 +360,21 @@ def max_non_increasing_seq():
     print_answ(search_max_num_of_subseq(arr_in, n), n)
 
 
+def edit_dist():
+    a, b = (input(), input())
+    n, m = map(len, (a, b))
+    dist = [list(range(m + 1)) if j == 0 else [j, *[0] * m] for j in range(n + 1)]
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            diff = int(a[i - 1] != b[j - 1])
+            dist[i][j] = min(dist[i - 1][j] + 1, dist[i][j - 1] + 1, dist[i - 1][j - 1] + diff)
+    print(dist[n][m])
+
 if __name__ == "__main__":
 
     # fib()  #Даны целые числа 1≤n≤10^18 и 2≤m≤10^5, необходимо найти остаток от деления n-го числа Фибоначчи на m.
 
-    #    nod()  # По данным двум числам 1≤a,b≤2⋅10^9 найдите их наибольший общий делитель.
+    # nod()  # По данным двум числам 1≤a,b≤2⋅10^9 найдите их наибольший общий делитель.
 
     #    points_into_bars()  # По данным n n n отрезкам необходимо найти множество точек минимального размера, для которого
     # каждый из отрезков содержит хотя бы одну из точек. В первой строке дано число 1≤n≤100
@@ -488,3 +498,18 @@ if __name__ == "__main__":
     # Sample Output:
     # 4
     # 1 3 4 5
+
+    # edit_dist() #расстояние редактирования. Вычислите расстояние редактирования двух данных непустых строк длины
+                    # не более 10^2, содержащих строчные буквы латинского алфавита.
+                    #Sample Input 1:
+                    #ab
+                    #ab
+                    #Sample Output 1:
+                    #0
+                    #Sample Input 2:
+                    #short
+                    #ports
+                    #Sample Output 2:
+                    #3
+
+
