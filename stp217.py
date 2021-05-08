@@ -380,26 +380,28 @@ def add_table():
     while qty > 0:
         a = random.choice(num)
         b = random.choice(num)
-        try:
-            answ = int(input(f'Сколько будет {a} + {b}? \n'))
-            if answ == 'q':
-                return
-            else:
-                if answ == a + b:
-                    yes += 1
-                    print('ВЕРНО! Молодец!')
-                else:
-                    no += 1
-                    print(f'Неверно. Правильный ответ: {a + b}')
-            qty -= 1
-            print(f'Твоя оценка {(5 * yes / (yes + no)) * 10 % 100 //1 / 10} Осталось примеров ещё: {qty}шт.\n')
+        answ = input(f'Сколько будет {a} + {b}? \n')
+        if answ == 'q':
+            return
 
+        try:
+            answ = int(answ)
         except:
             print('Неверный ввод')
+            continue
+
+        if answ == a + b:
+            yes += 1
+            print('ВЕРНО! Молодец!')
+        else:
+            no += 1
+            print(f'Неверно. Правильный ответ: {a + b}')
+        qty -= 1
+        print(f'Твоя оценка {(5 * yes / (yes + no)) * 10 % 100 // 1 / 10} Осталось примеров ещё: {qty}шт.\n')
     return
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     # fib()  #Даны целые числа 1≤n≤10^18 и 2≤m≤10^5, необходимо найти остаток от деления n-го числа Фибоначчи на m.
 
     # nod()  # По данным двум числам 1≤a,b≤2⋅10^9 найдите их наибольший общий делитель.
@@ -540,4 +542,4 @@ if __name__ == "__main__":
     # Sample Output 2:
     # 3
 
-    #add_table() #программа для тренировки с ребёнком таблицы сложения.
+    add_table()  # программа для тренировки с ребёнком таблицы сложения.
