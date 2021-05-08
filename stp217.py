@@ -377,7 +377,8 @@ def add_table():
     no = 0
     num = [i for i in range(1, 10)]
     qty = int(input(f'Сколько примеров хотите решить?'))
-    while qty > 0:
+
+    while True:
         a = random.choice(num)
         b = random.choice(num)
         answ = input(f'Сколько будет {a} + {b}? \n')
@@ -397,7 +398,22 @@ def add_table():
             no += 1
             print(f'Неверно. Правильный ответ: {a + b}')
         qty -= 1
-        print(f'Твоя оценка {(5 * yes / (yes + no)) * 10 % 100 // 1 / 10} Осталось примеров ещё: {qty}шт.\n')
+        est = (5 * yes / (yes + no)) * 10 % 100 // 1 / 10
+        if qty > 0:
+            print(f'Сейчас твоя оценка {est} Осталось примеров ещё: {qty}шт.\n')
+        else:
+            break
+
+    after_point = est - int(est)
+    if after_point >= 0.9 and after_point < 0.9:
+        est = str(int(est))
+    elif after_point <= 0.5:
+        est = str(int(est)) + '+'
+    else:
+        est = str(int(est + 1)) + '-'
+
+    print(f'\n\nТренировка закончена.\nПравильных ответов - {yes}. Неправильных - {no}.\nОкончательная оценка'
+          f' {est}')
     return
 
 
