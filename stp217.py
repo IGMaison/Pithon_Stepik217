@@ -370,6 +370,34 @@ def edit_dist():
             dist[i][j] = min(dist[i - 1][j] + 1, dist[i][j - 1] + 1, dist[i - 1][j - 1] + diff)
     print(dist[n][m])
 
+
+def add_table():
+    import random
+    yes = 0
+    no = 0
+    num = [i for i in range(1, 10)]
+    qty = int(input(f'Сколько примеров хотите решить?'))
+    while qty > 0:
+        a = random.choice(num)
+        b = random.choice(num)
+        try:
+            answ = int(input(f'Сколько будет {a} + {b}? \n'))
+            if answ == 'q':
+                return
+            else:
+                if answ == a + b:
+                    yes += 1
+                    print('ВЕРНО! Молодец!')
+                else:
+                    no += 1
+                    print(f'Неверно. Правильный ответ: {a + b}')
+            qty -= 1
+            print(f'Твоя оценка {(5 * yes / (yes + no)) * 10 % 100 //1 / 10} Осталось примеров ещё: {qty}шт.\n')
+
+        except:
+            print('Неверный ввод')
+    return
+
 if __name__ == "__main__":
 
     # fib()  #Даны целые числа 1≤n≤10^18 и 2≤m≤10^5, необходимо найти остаток от деления n-го числа Фибоначчи на m.
@@ -500,16 +528,16 @@ if __name__ == "__main__":
     # 1 3 4 5
 
     # edit_dist() #расстояние редактирования. Вычислите расстояние редактирования двух данных непустых строк длины
-                    # не более 10^2, содержащих строчные буквы латинского алфавита.
-                    #Sample Input 1:
-                    #ab
-                    #ab
-                    #Sample Output 1:
-                    #0
-                    #Sample Input 2:
-                    #short
-                    #ports
-                    #Sample Output 2:
-                    #3
+    # не более 10^2, содержащих строчные буквы латинского алфавита.
+    # Sample Input 1:
+    # ab
+    # ab
+    # Sample Output 1:
+    # 0
+    # Sample Input 2:
+    # short
+    # ports
+    # Sample Output 2:
+    # 3
 
-
+    #add_table() #программа для тренировки с ребёнком таблицы сложения.
