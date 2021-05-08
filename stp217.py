@@ -377,11 +377,11 @@ def add_table():
     no = 0
     num = [i for i in range(1, 10)]
     qty = int(input(f'Сколько примеров хотите решить?'))
-
+    print()
     while True:
         a = random.choice(num)
         b = random.choice(num)
-        answ = input(f'Сколько будет {a} + {b}? \n')
+        answ = input(f'Сколько будет {a} + {b} = ? \n')
         if answ == 'q':
             return
 
@@ -396,7 +396,7 @@ def add_table():
             print('ВЕРНО! Молодец!')
         else:
             no += 1
-            print(f'Неверно. Правильный ответ: {a + b}')
+            print(f'Неверно. Правильный ответ: {a} + {b} = {a + b}')
         qty -= 1
         est = (5 * yes / (yes + no)) * 10 % 100 // 1 / 10
         if qty > 0:
