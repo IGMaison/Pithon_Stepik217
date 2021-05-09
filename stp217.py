@@ -417,7 +417,22 @@ def add_table():
     return
 
 
+def pack():
+    w, n = map(int, input().split())
+    g_mass = list(map(int, input().split()))
+    decide_arr = [[0] * (w + 1) for _ in range(n + 1)]
+    for i in range(1, n + 1):
+        for j in range(1, w + 1):
+            mass_curr = g_mass[i - 1]
+            if j >= mass_curr:
+                decide_arr[i][j] = max(decide_arr[i - 1][j], mass_curr + decide_arr[i - 1][j - mass_curr])
+            else:
+                decide_arr[i][j] = decide_arr[i - 1][j]
+    print(decide_arr[-1][-1])
+
+
 if __name__ == "__main__":
+
     # fib()  #Даны целые числа 1≤n≤10^18 и 2≤m≤10^5, необходимо найти остаток от деления n-го числа Фибоначчи на m.
 
     # nod()  # По данным двум числам 1≤a,b≤2⋅10^9 найдите их наибольший общий делитель.
@@ -558,4 +573,15 @@ if __name__ == "__main__":
     # Sample Output 2:
     # 3
 
-    add_table()  # программа для тренировки с ребёнком таблицы сложения.
+    #add_table()  # программа для тренировки с ребёнком таблицы сложения.
+
+    #pack() # рюкзак. Первая строка входа содержит целые числа 1≤W≤10^4 и 1≤n≤300 — вместимость рюкзака и число золотых
+            # слитков. Следующая строка содержит n целых чисел 0≤w1,…,wn≤10^5, задающих веса слитков. Найдите
+            # максимальный вес золота, который можно унести в рюкзаке.
+
+            #Sample Input:
+            #10 3
+            #1 4 8
+            #Sample Output:
+            #9
+
