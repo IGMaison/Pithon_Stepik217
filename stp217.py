@@ -405,9 +405,11 @@ def add_table():
             break
 
     after_point = est - int(est)
-    if after_point >= 0.9 and after_point < 0.9:
-        est = str(int(est))
-    elif after_point <= 0.5:
+    if est == 5:
+        est = '5+!!!'
+    elif after_point >= 0.9:
+        est = str(int(est) + 1)
+    elif after_point < 0.5:
         est = str(int(est)) + '+'
     else:
         est = str(int(est + 1)) + '-'
@@ -429,6 +431,16 @@ def pack():
             else:
                 decide_arr[i][j] = decide_arr[i - 1][j]
     print(decide_arr[-1][-1])
+
+
+def steps():
+
+    n, a = int(input()), list(map(int, input().split()))
+    if n > 1:
+        a[1] += max(0, a[0])
+        for idx in range(2, n):
+            a[idx] += max(a[idx - 1], a[idx - 2])
+    print(a[n - 1])
 
 
 if __name__ == "__main__":
@@ -584,4 +596,8 @@ if __name__ == "__main__":
             #1 4 8
             #Sample Output:
             #9
+
+    steps() #Даны число 1≤n≤10^2 ступенек лестницы и целые числа -10^4≤a1​,…,an​≤10^4, которыми помечены ступеньки.
+            # Найдите максимальную сумму, которую можно получить, идя по лестнице снизу вверх (от нулевой до
+            # n-й ступеньки), каждый раз поднимаясь на одну или две ступеньки.
 
